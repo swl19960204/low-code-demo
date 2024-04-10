@@ -1,9 +1,140 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import { ref } from 'vue'
+import Toobar from '../components/Toobar.vue'
+import OptionalComponentList from '../components/OptionalComponentList.vue'
+import Editor from '../components/Editor/index.vue'
+
+const isDarkMode = ref(false);
+const leftActive = ref(true);
+const rightActive = ref(true);
+const activeName = ref('attr');
+
+
+const handleDrop = () => {
+
+}
+const handleDragOver = () => {
+
+}
+const handleMouseDown = () => {
+
+}
+const deselectCurComponent = () => {
+
+}
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <div :class="!isDarkMode ? 'home' : 'home dark'">
+    <Toobar />
+
+    <main>
+      <section :class="leftActive ? 'left active' : 'left inactive'">
+        <OptionalComponentList />
+        <!-- <RealTimeComponentList /> -->
+      </section>
+
+      <section class="middle">
+        <div class="middle-content" @drop="handleDrop" @dragover="handleDragOver" @mousedown="handleMouseDown"
+          @mouseup="deselectCurComponent">
+          <Editor />
+        </div>
+      </section>
+
+      <section :class="rightActive ? 'right active' : 'right inactive'">
+        <!-- v-if="curComponent"  -->
+        <a-tabs v-model:activeKey="activeName">
+          <a-tab-pane tab="属性" key="attr">
+            <!-- <component :is="curComponent.component + 'Attr'" /> -->
+          </a-tab-pane>
+          <a-tab-pane tab="动画" key="animation" style="padding-top: 20px;">
+            <!-- <AnimationList /> -->
+          </a-tab-pane>
+          <a-tab-pane tab="事件" key="events" style="padding-top: 20px;">
+            <!-- <EventList /> -->
+          </a-tab-pane>
+        </a-tabs>
+        <!-- <CanvasAttr v-else></CanvasAttr> -->
+      </section>
+    </main>
+  </div>
 </template>
+
+
+<style lang="less" scoped>
+.home {
+  width: 100vw;
+  height: 100vh;
+  background: var(--main-bg-color);
+
+  main {
+    height: calc(100% - 64px);
+    position: relative;
+    background: var(--secondary-bg-color);
+
+
+    .left,
+    .right {
+      position: absolute;
+      height: 100%;
+      top: 0;
+      transition: all .3s;
+      background: var(--main-bg-color);
+      color: var(--text-color);
+    }
+
+
+    .middle {
+      margin: 0 288px 0 200px;
+      background: var(--secondary-bg-color);
+      height: 100%;
+      overflow: auto;
+      padding: 20px;
+      transition: all .3s;
+
+      &-content {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
+    }
+
+
+    .left {
+      width: 200px;
+      left: 0;
+
+      // .real-time-component-list .list:hover {
+      //   color: var(--text-color);
+      // }
+
+      // .real-time-component-list .actived.list {
+      //   color: var(--actived-text-color);
+      //   background-color: var(--actived-bg-color);
+      // }
+
+      // .real-time-component-list .list {
+      //   color: var(--text-color);
+      // }
+
+      // &>div {
+      //   overflow: auto;
+
+      //   &:first-child {
+      //     border-bottom: 1px solid var(--border-color);
+      //   }
+      // }
+    }
+
+    .right {
+      position: absolute;
+      height: 100%;
+      width: 288px;
+      right: 0;
+      top: 0;
+      transition: all .3s;
+      background-color: var(--main-bg-color);
+    }
+  }
+}
+</style>

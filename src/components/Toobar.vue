@@ -1,0 +1,86 @@
+<script setup>
+import { ref } from "vue";
+defineProps({
+    // msg: {
+    //     type: String,
+    //     required: true
+    // }
+})
+const isShowPreview = ref(false);
+
+function onExportJSON() {
+}
+
+function undo() {
+}
+
+function redo() {
+}
+
+function handleFileChange() {
+}
+
+function preview(isScreenshot) {
+}
+
+function save() {
+}
+
+function clearCanvas() {
+}
+
+function onAceEditorChange() {
+}
+
+function onImportJSON() {
+}
+</script>
+
+<template>
+    <div class="toolbar">
+        <a-button @click="onAceEditorChange">JSON</a-button>
+        <a-button @click="onImportJSON">导入</a-button>
+        <a-button @click="onExportJSON">导出</a-button>
+        <a-button @click="undo">撤消</a-button>
+        <a-button @click="redo">重做</a-button>
+        <label for="input" class="insert">
+            插入图片
+            <input id="input" type="file" hidden @change="handleFileChange" />
+        </label>
+
+        <a-button @click="preview(false)">预览</a-button>
+        <a-button @click="save">保存</a-button>
+        <a-button @click="clearCanvas">清空画布</a-button>
+    </div>
+</template>
+
+<style lang="less" scoped>
+.toolbar {
+    padding: 15px 10px;
+    white-space: nowrap;
+    overflow-x: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 10px;
+}
+
+.insert {
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid var(--toolbar-border-color);
+    color: var(--text-color);
+    appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    transition: .1s;
+    font-weight: 500;
+    padding: 9px 15px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+</style>
