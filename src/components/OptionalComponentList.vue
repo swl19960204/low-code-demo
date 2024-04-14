@@ -1,19 +1,19 @@
 <script setup>
-
-const handleDragStart = () => {
-
+import componentList from './Custom/component-list'
+const handleDragStart = (e) => {
+    console.log("🚀 ~ handleDragStart ~ e:", e.target)
+    e.dataTransfer.setData('index', e.target.dataset.index)
 }
 
 </script>
 
-
 <template>
     <div class="optional-component-list" @dragstart="handleDragStart">
-        <!-- <div v-for="(item, index) in componentList" :key="index" class="optional-component-list_item" draggable
+        <div v-for="(item, index) in componentList" :key="index" class="optional-component-list_item" draggable
             :data-index="index">
             <span v-if="item.icon.substr(0, 2) === 'el'" :class="item.icon"></span>
             <span v-else class="iconfont" :class="'icon-' + item.icon"></span>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -40,6 +40,24 @@ const handleDragStart = () => {
         display: flex;
         align-items: center;
         justify-content: center;
+
+        &:active {
+            cursor: grabbing;
+        }
+
+        .iconfont {
+            margin-right: 4px;
+            font-size: 20px;
+        }
+
+        .icon-wenben,
+        .icon-biaoge {
+            font-size: 18px;
+        }
+
+        .icon-tupian {
+            font-size: 16px;
+        }
     }
 }
 </style>

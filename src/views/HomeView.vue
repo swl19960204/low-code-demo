@@ -1,23 +1,50 @@
 <script setup>
 import { ref } from 'vue'
+import { cloneDeep } from 'lodash-es'
+import { useCoreStore } from '../stores/core'
+import { useSnapshotStore } from '../stores/snapshot'
+import { useComposeStore } from '../stores/compose'
 import Toobar from '../components/Toobar.vue'
 import OptionalComponentList from '../components/OptionalComponentList.vue'
 import Editor from '../components/Editor/index.vue'
+import componentList from '../components/Custom/component-list'
+import { generateID } from '../utils'
+import { changeComponentSizeWithScale } from '@/utils/changeComponentsSizeWithScale'
 
 const isDarkMode = ref(false);
 const leftActive = ref(true);
 const rightActive = ref(true);
 const activeName = ref('attr');
+const coreStore = useCoreStore();
+const snapShotstore = useSnapshotStore();
+const composeStore = useComposeStore();
 
+const handleDrop = (e) => {
+  e.preventDefault()
+  e.stopPropagation()
+  const index = e.dataTransfer.getData('index');
+  const rectInfo = composeStore.editor.getBoundingClientRect()
+  console.log("🚀 ~ handleDrop ~ e:", e.target)
+  console.log("🚀 ~ handleDrop ~ e:", index)
+  if (index) {
+    const component = cloneDeep(componentList[index])
+    component.style.top = e.clientY - rectInfo.y
+    component.style.left = e.clientX - rectInfo.x
+    component.id = generateID()
 
-const handleDrop = () => {
+    // 根据画面比例修改组件样式比例
+    changeComponentSizeWithScale(component)
 
+    coreStore.addComponent(component);
+    snapShotstore.recordSnapshot();
+  }
 }
-const handleDragOver = () => {
-
+const handleDragOver = (e) => {
+  e.preventDefault()
+  e.dataTransfer.dropEffect = 'copy'
 }
-const handleMouseDown = () => {
-
+const handleMouseDown = (e) => {
+  e.stopPropagation()
 }
 const deselectCurComponent = () => {
 
@@ -86,7 +113,8 @@ const deselectCurComponent = () => {
 
     .middle {
       margin: 0 288px 0 200px;
-      background: var(--secondary-bg-color);
+      // background: var(--secondary-bg-color);
+      background: #f5f5f5;
       height: 100%;
       overflow: auto;
       padding: 20px;

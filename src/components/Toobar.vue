@@ -63,6 +63,12 @@ function onImportJSON() {
     align-items: center;
     justify-content: flex-start;
     column-gap: 10px;
+    background: #fff;
+    border-color: #e4e7ed;
+    border-bottom: 1px solid #dcdfe6;
+    // background: var(--main-bg-color);
+    // border-color: var(--ace-bg-color);
+    // border-bottom: 1px solid var(--border-color);
 }
 
 .insert {
