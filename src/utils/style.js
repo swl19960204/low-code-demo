@@ -38,7 +38,6 @@ const needUnit = [
 ]
 
 export function getStyle(style, filter = []) {
-    console.log("🚀 ~ getStyle ~ style:", style)
     const result = {}
     Object.keys(style).forEach(key => {
         if (!filter.includes(key)) {

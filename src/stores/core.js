@@ -13,6 +13,8 @@ export const useCoreStore = defineStore('core', {
             fontSize: 14,
         },
         componentData: [], // 画布组件数据
+        curComponent: null,
+        curComponentIndex: -1,
     }),
     getters: {
 
@@ -24,6 +26,17 @@ export const useCoreStore = defineStore('core', {
             } else {
                 this.componentData.push(component)
             }
-        }
+        },
+        setCurComponent({ component, index }) {
+            this.curComponent = component
+            this.curComponentIndex = index
+        },
+        setShapeStyle({ top, left, width, height, rotate }) {
+            if (top !== undefined) this.curComponent.style.top = Math.round(top)
+            if (left !== undefined) this.curComponent.style.left = Math.round(left)
+            if (width) this.curComponent.style.width = Math.round(width)
+            if (height) this.curComponent.style.height = Math.round(height)
+            if (rotate) this.curComponent.style.rotate = Math.round(rotate)
+        },
     },
 })
