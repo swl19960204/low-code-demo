@@ -45,9 +45,12 @@ const handleDragOver = (e) => {
 }
 const handleMouseDown = (e) => {
   e.stopPropagation()
+  coreStore.setClickOutSideCompStatus(false);
 }
 const deselectCurComponent = () => {
-
+  if (!coreStore.clickOutSideComponent) {
+    coreStore.setCurComponent({ component: null, index: null })
+  }
 }
 </script>
 

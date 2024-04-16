@@ -46,6 +46,7 @@ function selectCurComponent(e) {
 }
 function handleMouseDownOnShape(e) {
     e.stopPropagation();
+    coreStore.setClickOutSideCompStatus(true);
     coreStore.setCurComponent({ component: props.element, index: props.index })
 
     const pos = { ...props.defaultStyle }
@@ -78,7 +79,9 @@ function handleMouseDownOnShape(e) {
 }
 
 function handleRotate(e) {
-
+    e.preventDefault()
+    e.stopPropagation()
+    coreStore.setClickOutSideCompStatus(true);
 }
 
 function getPointStyle(point) {
@@ -124,6 +127,8 @@ function getPointStyle(point) {
 function handleMouseDownOnPoint(point, e) {
     e.stopPropagation()
     e.preventDefault()
+
+    coreStore.setClickOutSideCompStatus(true);
 
 }
 

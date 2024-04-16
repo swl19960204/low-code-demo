@@ -15,6 +15,7 @@ export const useCoreStore = defineStore('core', {
         componentData: [], // 画布组件数据
         curComponent: null,
         curComponentIndex: -1,
+        clickOutSideComponent: false,
     }),
     getters: {
 
@@ -37,6 +38,9 @@ export const useCoreStore = defineStore('core', {
             if (width) this.curComponent.style.width = Math.round(width)
             if (height) this.curComponent.style.height = Math.round(height)
             if (rotate) this.curComponent.style.rotate = Math.round(rotate)
+        },
+        setClickOutSideCompStatus(status) {
+            this.clickOutSideComponent = status
         },
     },
 })
