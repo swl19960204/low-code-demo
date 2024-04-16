@@ -60,10 +60,10 @@ onMounted(() => {
         <!-- 网格线  :is-dark-mode="isDarkMode" -->
         <Grid />
 
-        <!--页面组件列表展示 :active="item.id === (curComponent || {}).id"-->
+        <!--页面组件列表展示 -->
         <Shape v-for="(item, index) in coreStore.componentData" :key="item.id" :element="item"
-            :style="getShapeStyle(item.style)" :default-style="item.style" :index="index"
-            :class="{ lock: item.isLock }">
+            :style="getShapeStyle(item.style)" :default-style="item.style" :index="index" :class="{ lock: item.isLock }"
+            :active="item.id === (coreStore.curComponent || {}).id">
 
             <component :is="item.component" :id="`component-${item.id}`" class="component"
                 :style="getComponentStyle(item.style)" :prototies="item.propValue" :element="item"
