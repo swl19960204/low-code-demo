@@ -2,6 +2,8 @@
 import { computed, reactive } from 'vue'
 import { useCoreStore } from '../../stores/core'
 import { useSnapshotStore } from '../../stores/snapshot'
+import { useComposeStore } from '../../stores/compose'
+import calculateComponentPositonAndSize from '../../utils/calculateComponentPositonAndSize'
 const props = defineProps({
     active: {
         type: Boolean,
@@ -38,6 +40,7 @@ const getPointList = computed(() => {
 
 const coreStore = useCoreStore()
 const snapshotStore = useSnapshotStore()
+const composeStore = useComposeStore()
 
 function selectCurComponent(e) {
     // 阻止向父组件冒泡
@@ -127,9 +130,79 @@ function getPointStyle(point) {
 function handleMouseDownOnPoint(point, e) {
     e.stopPropagation()
     e.preventDefault()
-
     coreStore.setClickOutSideCompStatus(true);
 
+    const style = { ...props.defaultStyle }
+    // 组件宽高比
+    const aspectRatio = style.width / style.height;
+
+    // 组件中心点
+    const center = {
+        x: style.left + style.width / 2,
+        y: style.top + style.height / 2,
+    }
+    const editorRectInfo = composeStore.editor.getBoundingClientRect()
+    // 获取 point 与实际拖动基准点的差值
+    const pointRect = e.target.getBoundingClientRect()
+
+    // 当前点击圆点相对于画布的中心坐标
+    const curPoint = {
+        x: Math.round(pointRect.left - editorRectInfo.left + e.target.offsetWidth / 2),
+        y: Math.round(pointRect.top - editorRectInfo.top + e.target.offsetHeight / 2),
+    }
+
+    // 获取对称点的坐标
+    const symmetricPoint = {
+        x: center.x - (curPoint.x - center.x),
+        y: center.y - (curPoint.y - center.y),
+    }
+
+    let needSave = false
+    let isFirst = true
+
+    const needLockProportion = isNeedLockProportion();
+    const move = (moveEvent) => {
+        // 第一次点击时也会触发 move，所以会有“刚点击组件但未移动，组件的大小却改变了”的情况发生
+        // 因此第一次点击时不触发 move 事件
+        if (isFirst) {
+            isFirst = false
+            return
+        }
+        needSave = true;
+
+        const curPositon = {
+            x: moveEvent.clientX - Math.round(editorRectInfo.left),
+            y: moveEvent.clientY - Math.round(editorRectInfo.top),
+        }
+
+        calculateComponentPositonAndSize(point, style, curPositon, aspectRatio, needLockProportion, {
+            center,
+            curPoint,
+            symmetricPoint,
+        })
+
+        coreStore.setShapeStyle(style);
+    }
+    const up = () => {
+        document.removeEventListener("mousemove", move)
+        document.removeEventListener("mouseup", up)
+        needSave && snapshotStore.recordSnapshot();
+    }
+    document.addEventListener("mousemove", move)
+    document.addEventListener("mouseup", up)
+}
+
+
+function isNeedLockProportion() {
+    if (props.element.component != 'Group') return false
+    // const ratates = [0, 90, 180, 360]
+    // for (const component of this.element.propValue) {
+    //     if (!ratates.includes(mod360(parseInt(component.style.rotate)))) {
+    //         return true
+    //     }
+    // }
+
+    // return false
 }
 
 </script>
