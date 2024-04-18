@@ -37,10 +37,13 @@ const handleDrop = (e) => {
 
     coreStore.addComponent(component);
     snapShotstore.recordSnapshot();
+
+    e.dataTransfer.clearData();
   }
 }
 const handleDragOver = (e) => {
   e.preventDefault()
+  e.stopPropagation();
   e.dataTransfer.dropEffect = 'copy'
 }
 const handleMouseDown = (e) => {

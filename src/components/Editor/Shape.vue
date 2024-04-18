@@ -1,5 +1,5 @@
 <script setup>
-import { computed, reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { useCoreStore } from '../../stores/core'
 import { useSnapshotStore } from '../../stores/snapshot'
 import { useComposeStore } from '../../stores/compose'
@@ -29,7 +29,7 @@ const props = defineProps({
 const pointList = reactive(['lt', 't', 'rt', 'r', 'rb', 'b', 'lb', 'l'])
 // 线只有两个方向
 const pointList2 = reactive(['r', 'l'])
-
+const rootRef = ref(null);
 
 const isActive = computed(() => {
     return props.active && !props.element.isLock
@@ -47,6 +47,7 @@ function selectCurComponent(e) {
     e.stopPropagation()
     e.preventDefault()
 }
+
 function handleMouseDownOnShape(e) {
     e.stopPropagation();
     coreStore.setClickOutSideCompStatus(true);
@@ -71,7 +72,7 @@ function handleMouseDownOnShape(e) {
 
         coreStore.setShapeStyle(pos);
     }
-    const up = (upEvent) => {
+    const up = () => {
         hasMove && snapshotStore.recordSnapshot();
 
         document.removeEventListener("mousemove", move)
@@ -85,6 +86,37 @@ function handleRotate(e) {
     e.preventDefault()
     e.stopPropagation()
     coreStore.setClickOutSideCompStatus(true);
+
+    // 初始坐标和初始角度
+    const pos = { ...props.defaultStyle }
+    const startY = e.clientY
+    const startX = e.clientX
+    const startRotate = pos.rotate
+    const rect = rootRef.value.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const rotateBefore = Math.atan2(startY - centerY, startX - centerX) / (Math.PI / 180)
+
+    let hasRotate = false;
+    const move = (moveEvent) => {
+        hasRotate = true;
+        const curX = moveEvent.clientX
+        const curY = moveEvent.clientY
+        // 旋转后的角度
+        const rotateAfter = Math.atan2(curY - centerY, curX - centerX) / (Math.PI / 180)
+        // 获取旋转的角度值
+        pos.rotate = startRotate + rotateAfter - rotateBefore
+
+        coreStore.setShapeStyle(pos);
+    }
+    const up = () => {
+        document.removeEventListener("mousemove", move)
+        document.removeEventListener("mouseup", up)
+        hasRotate && snapshotStore.recordSnapshot();
+    }
+    document.addEventListener("mousemove", move)
+    document.addEventListener("mouseup", up)
 }
 
 function getPointStyle(point) {
@@ -208,7 +240,8 @@ function isNeedLockProportion() {
 </script>
 
 <template>
-    <div class="shape" :class="{ active }" @click="selectCurComponent" @mousedown="handleMouseDownOnShape">
+    <div ref="rootRef" class="shape" :class="{ active }" @click="selectCurComponent"
+        @mousedown="handleMouseDownOnShape">
         <span v-show="isActive" class="iconfont icon-xiangyouxuanzhuan" @mousedown="handleRotate"></span>
         <div v-for="item in (isActive ? getPointList : [])" :key="item" class="shape-point" :style="getPointStyle(item)"
             @mousedown="handleMouseDownOnPoint(item, $event)">
