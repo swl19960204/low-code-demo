@@ -30,6 +30,7 @@ export const registerCustomComp = {
         for (const [path, component] of Object.entries(components)) {
             const componentName = path.match(/\/([^\/]+)\/[^\/]+\.vue$/)[1];
             console.log("🚀 ~ componentName:", componentName)
+            console.log("🚀 ~ component:", component)
             // 通过 defineAsyncComponent 异步导入指定路径下的组件
             app.component(componentName, defineAsyncComponent(component));
         }
