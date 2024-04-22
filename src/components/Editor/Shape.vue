@@ -1,9 +1,10 @@
 <script setup>
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref, nextTick } from 'vue'
 import { useCoreStore } from '../../stores/core'
 import { useSnapshotStore } from '../../stores/snapshot'
 import { useComposeStore } from '../../stores/compose'
 import calculateComponentPositonAndSize from '../../utils/calculateComponentPositonAndSize'
+import eventBus from '@/utils/eventBus'
 const props = defineProps({
     active: {
         type: Boolean,
@@ -71,10 +72,18 @@ function handleMouseDownOnShape(e) {
         pos.left = curX - startX + startLeft;
 
         coreStore.setShapeStyle(pos);
+        // 如果不使用 $nextTick，吸附后将无法移动
+        nextTick(() => {
+            // 后面两个参数代表鼠标移动方向
+            // curY - startY > 0 true 表示向下移动 false 表示向上移动
+            // curX - startX > 0 true 表示向右移动 false 表示向左移动
+            eventBus.emit('move', curY - startY > 0, curX - startX > 0)
+        })
     }
     const up = () => {
         hasMove && snapshotStore.recordSnapshot();
-
+        // 触发元素停止移动事件，用于隐藏标线
+        eventBus.emit('unmove')
         document.removeEventListener("mousemove", move)
         document.removeEventListener("mouseup", up)
     }

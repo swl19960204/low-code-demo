@@ -33,8 +33,8 @@ export const registerCustomComp = {
             console.log("🚀 ~ componentName:", componentName)
             console.log("🚀 ~ component:", component)
             // 通过 defineAsyncComponent 异步导入指定路径下的组件
-            // app.component(componentName, defineAsyncComponent(component));
-            app.component(componentName, defineAsyncComponent(() => import(`./${path}`)));
+            app.component(componentName, defineAsyncComponent(component));
+            // app.component(componentName, defineAsyncComponent(() => import(`./${path}`)));
         }
     }
 }

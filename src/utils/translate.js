@@ -11,7 +11,6 @@ function angleToRadian(angle) {
     return angle * Math.PI / 180
 }
 
-
 /**
  * 计算根据圆心旋转后的点的坐标
  * @param   {Object}  point  旋转前的点坐标
@@ -44,4 +43,12 @@ export function getCenterPoint(p1, p2) {
         x: p1.x + ((p2.x - p1.x) / 2),
         y: p1.y + ((p2.y - p1.y) / 2),
     }
+}
+
+export function sin(rotate) {
+    return Math.abs(Math.sin(angleToRadian(rotate)))
+}
+
+export function cos(rotate) {
+    return Math.abs(Math.cos(angleToRadian(rotate)))
 }

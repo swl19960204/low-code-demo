@@ -42,5 +42,8 @@ export const useCoreStore = defineStore('core', {
         setClickOutSideCompStatus(status) {
             this.clickOutSideComponent = status
         },
+        setShapeSingleStyle({ key, value }) {
+            this.curComponent.style[key] = value
+        },
     },
 })
