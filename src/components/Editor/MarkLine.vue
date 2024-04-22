@@ -17,8 +17,6 @@ const lineRefs = new Array(lines.length).fill();
 const coreStore = useCoreStore()
 
 function showLine(isDownward, isRightward) {
-    console.log("🚀 ~ showLine ~ lines:", lineRefs)
-    console.log("🚀 ~ showLine ~ lines:", lineRefs[0])
     const components = coreStore.componentData;
     const curComponentStyle = getComponentRotatedStyle(coreStore.curComponent.style)
     const curComponentHalfwidth = curComponentStyle.width / 2
@@ -44,7 +42,7 @@ function showLine(isDownward, isRightward) {
                 },
                 {
                     isNearly: isNearly(curComponentStyle.bottom, top),
-                    lineNode: lines[0], // xt
+                    lineNode: lineRefs[0], // xt
                     line: 'xt',
                     dragShift: top - curComponentStyle.height,
                     lineShift: top,
@@ -52,20 +50,20 @@ function showLine(isDownward, isRightward) {
                 {
                     // 组件与拖拽节点的中间是否对齐
                     isNearly: isNearly(curComponentStyle.top + curComponentHalfHeight, top + componentHalfHeight),
-                    lineNode: lines[1], // xc
+                    lineNode: lineRefs[1], // xc
                     line: 'xc',
                     dragShift: top + componentHalfHeight - curComponentHalfHeight,
                     lineShift: top + componentHalfHeight,
                 }, {
                     isNearly: isNearly(curComponentStyle.top, bottom),
-                    lineNode: lines[2], // xb
+                    lineNode: lineRefs[2], // xb
                     line: 'xb',
                     dragShift: bottom,
                     lineShift: bottom,
                 },
                 {
                     isNearly: isNearly(curComponentStyle.bottom, bottom),
-                    lineNode: lines[2], // xb
+                    lineNode: lineRefs[2], // xb
                     line: 'xb',
                     dragShift: bottom - curComponentStyle.height,
                     lineShift: bottom,
