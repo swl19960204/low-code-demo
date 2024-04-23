@@ -9,7 +9,7 @@ const handleDragStart = (e) => {
 
 <template>
     <div class="optional-component-list" @dragstart="handleDragStart">
-        <div v-for="(item, index) in componentList" :key="index" class="optional-component-list_item" draggable
+        <div v-for="(item, index) in componentList" :key="index" class="optional-component-list_item" draggable="true"
             :data-index="index">
             <span v-if="item.icon.substr(0, 2) === 'el'" :class="item.icon"></span>
             <span v-else class="iconfont" :class="'icon-' + item.icon"></span>
