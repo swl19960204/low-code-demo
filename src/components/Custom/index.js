@@ -29,12 +29,17 @@ export const registerCustomComp = {
         // 遍历组件模块实现自动注册
         for (const [path, component] of Object.entries(components)) {
             console.log("🚀 ~ path:", path)
-            const componentName = path.match(/\/([^\/]+)\/[^\/]+\.vue$/)[1];
-            console.log("🚀 ~ componentName:", componentName)
+            // const componentName = path.match(/\/([^\/]+)\/[^\/]+\.vue$/)[1];
             console.log("🚀 ~ component:", component)
-            // 通过 defineAsyncComponent 异步导入指定路径下的组件
-            app.component(componentName, defineAsyncComponent(component));
-            // app.component(componentName, defineAsyncComponent(() => import(`./${path}`)));
+            const folderNameMatch = path.match(/\.\/(.*?)\/.+/);
+            const attrNameMatch = path.match(/\/(\w+).vue$/);
+            const folderName = folderNameMatch ? folderNameMatch[1] : null;
+            const componentName = attrNameMatch ? attrNameMatch[1] : null;
+            if (componentName === 'Component') {
+                app.component(folderName, defineAsyncComponent(component));
+            } else {
+                app.component(folderName + componentName, defineAsyncComponent(component));
+            }
         }
     }
 }

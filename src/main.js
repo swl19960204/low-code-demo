@@ -1,4 +1,4 @@
-import './assets/main.css'
+import './styles/reset.css'
 import './assets/iconfont/iconfont.css'
 
 import { createApp } from 'vue'
