@@ -32,6 +32,9 @@ export const useCoreStore = defineStore('core', {
             this.curComponent = component
             this.curComponentIndex = index
         },
+        setComponentData(componentData = []) {
+            this.componentData = componentData;
+        },
         setShapeStyle({ top, left, width, height, rotate }) {
             if (top !== undefined) this.curComponent.style.top = Math.round(top)
             if (left !== undefined) this.curComponent.style.left = Math.round(left)

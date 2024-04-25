@@ -19,6 +19,23 @@ export const useSnapshotStore = defineStore('snapshot', {
             if (this.snapshotIndex < this.snapshotData.length - 1) {
                 this.snapshotData = this.snapshotData.slice(0, this.snapshotIndex + 1)
             }
+        },
+        undo() {
+            const core = useCoreStore();
+            if (this.snapshotIndex >= 0) {
+                this.snapshotIndex--
+                const componentData = cloneDeep(this.snapshotData[this.snapshotIndex]) || [];
+                if (core.curComponent) {
+                    const needClean = !componentData.find(component => core.curComponent.id === component.id)
+                    if (needClean) {
+                        core.setCurComponent({
+                            curComponent: null,
+                            curComponentIndex: -1
+                        })
+                    }
+                }
+                core.setComponentData(componentData)
+            }
         }
     },
 })

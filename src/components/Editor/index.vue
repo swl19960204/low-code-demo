@@ -28,7 +28,7 @@ const svgFilterAttrs = ['width', 'height', 'top', 'left', 'rotate'];
 const coreStore = useCoreStore();
 const composeStore = useComposeStore();
 // const { canvasStyleData, componentData } = storeToRefs(coreStore)
-// console.log("🚀 ~ componentData:", coreStore.componentData)
+
 
 function handleContextMenu() {
 

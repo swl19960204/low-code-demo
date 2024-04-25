@@ -1,17 +1,15 @@
 <script setup>
+import { useSnapshotStore } from '@/stores/snapshot'
 import { ref } from "vue";
-defineProps({
-    // msg: {
-    //     type: String,
-    //     required: true
-    // }
-})
+
 const isShowPreview = ref(false);
+const snapshotStore = useSnapshotStore();
 
 function onExportJSON() {
 }
 
 function undo() {
+    snapshotStore.undo();
 }
 
 function redo() {
