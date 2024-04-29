@@ -6,6 +6,7 @@ import { useSnapshotStore } from '../stores/snapshot'
 import { useComposeStore } from '../stores/compose'
 import Toobar from '../components/Toobar.vue'
 import OptionalComponentList from '../components/OptionalComponentList.vue'
+import RealComponentList from '../components/RealComponentList.vue'
 import Editor from '../components/Editor/index.vue'
 import componentList from '../components/Custom/component-list'
 import { generateID } from '../utils'
@@ -35,7 +36,7 @@ const handleDrop = (e) => {
     // 根据画面比例修改组件样式比例
     changeComponentSizeWithScale(component)
 
-    coreStore.addComponent(component);
+    coreStore.addComp(component);
     snapShotstore.recordSnapshot();
 
     e.dataTransfer.clearData();
@@ -64,7 +65,7 @@ const deselectCurComponent = () => {
     <main>
       <section :class="leftActive ? 'left active' : 'left inactive'">
         <OptionalComponentList />
-        <!-- <RealTimeComponentList /> -->
+        <RealComponentList />
       </section>
 
       <section class="middle">

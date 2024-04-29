@@ -29,6 +29,7 @@ const handleDragStart = (e) => {
     grid-template-columns: repeat(auto-fill, 80px);
     grid-template-rows: repeat(auto-fill, 40px);
     transition: opacity .5s .5s;
+    border-bottom: 1px solid #dcdfe6;
 
     &_item {
         width: 80px;

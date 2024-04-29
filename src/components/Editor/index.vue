@@ -1,6 +1,6 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
-import { storeToRefs } from 'pinia'
+// import { storeToRefs } from 'pinia'
 import { useCoreStore } from '../../stores/core'
 import { useComposeStore } from '../../stores/compose'
 import Grid from './Grid.vue'
@@ -37,9 +37,7 @@ function handleContextMenu() {
 function handleMouseDown() {
 
 }
-function handleInput() {
 
-}
 function getComponentStyle(style) {
     return getStyle(style, svgFilterAttrs)
 }
