@@ -47,6 +47,7 @@ function getComponentStyle(style) {
 onMounted(() => {
     composeStore.setEditor();
 })
+
 </script>
 
 <template>

@@ -12,16 +12,21 @@ export default defineConfig({
     vue(),
     vueJsx(),
     Components({
+      // extensions: ['vue'],
+      // deep: true,
+      // dirs: ['src/components/Custom'],
       resolvers: [
         AntDesignVueResolver({
           importStyle: false, // css in js
         }),
       ],
+      directoryAsNamespace: true,
+      // dts: true,
     }),
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     }
   }
 })
