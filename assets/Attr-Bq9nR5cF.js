@@ -1,0 +1,1 @@
+import{_ as t}from"./CommonAttr-C99Ck42U.js";import{o as e,c as a,a as s,b as o}from"./index-DcWeHQnY.js";import"./core-JVeRCW_S.js";const r={class:"attr-list v-talbe-attr"},c=o("p",null,"TODO...",-1),d={__name:"Attr",setup(_){return(n,i)=>(e(),a("div",r,[s(t),c]))}};export{d as default};
