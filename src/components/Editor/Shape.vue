@@ -313,6 +313,7 @@ onMounted(() => {
     <div ref="rootRef" class="shape" :class="{ active }" @click="selectCurComponent"
         @mousedown="handleMouseDownOnShape">
         <span v-show="isActive" class="iconfont icon-xiangyouxuanzhuan" @mousedown="handleRotate"></span>
+        <span v-show="element.isLock" class="iconfont icon-suo"></span>
         <div v-for="item in (isActive ? getPointList : [])" :key="item" class="shape-point" :style="getPointStyle(item)"
             @mousedown="handleMouseDownOnPoint(item, $event)">
         </div>
@@ -358,5 +359,11 @@ onMounted(() => {
     &:active {
         cursor: grabbing;
     }
+}
+
+.icon-suo {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 </style>
