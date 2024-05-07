@@ -4,7 +4,7 @@ import { defineAsyncComponent } from 'vue'
 export const registerCustomComp = {
     install: (app) => {
         // import.meta.glob是vite的新api
-        const components = import.meta.glob("./*/**.vue");
+        const components = import.meta.glob("./*/**.vue", { eager: true });
         console.log("🚀 ~ components:", components)
         // 遍历组件模块实现自动注册
         for (const [path, component] of Object.entries(components)) {
