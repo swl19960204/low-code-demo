@@ -10,7 +10,6 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
-  "homepage": "https://swl19960204.github.io/low-code-demo",
   "dependencies": {
     "ant-design-vue": "^4.1.2",
     "lodash-es": "^4.17.21",
