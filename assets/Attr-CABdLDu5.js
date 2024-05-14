@@ -1,1 +1,0 @@
-import{_ as t}from"./CommonAttr-D0wvw_y2.js";import{o as e,c as o,b as r}from"./index-C5netd3E.js";import"./core-B5PdARQs.js";const s={class:"attr-list"},p={__name:"Attr",setup(a){return(c,_)=>(e(),o("div",s,[r(t)]))}};export{p as default};
