@@ -1,4 +1,5 @@
 import { sin, cos, } from './translate'
+// import { cloneDeep } from 'lodash-es'
 
 export function getShapeStyle(style) {
     const result = {};

@@ -21,5 +21,8 @@ export const useComposeStore = defineStore('compose', {
         setEditor() {
             this.editor = getElement('#editor')
         },
+        setAreaData(data) {
+            this.areaData = data
+        }
     },
 })
