@@ -2,12 +2,14 @@
 import { useSnapshotStore } from '@/stores/snapshot'
 import { useCoreStore } from '../stores/core'
 import { useLockStore } from '../stores/lock'
+import { useComposeStore } from '../stores/compose'
 // import { ref } from "vue";
 
 // const isShowPreview = ref(false);
 const snapshotStore = useSnapshotStore();
 const coreStore = useCoreStore();
 const lockStore = useLockStore();
+const composeStore = useComposeStore();
 function onExportJSON() {
 }
 
@@ -17,6 +19,16 @@ function undo() {
 
 function redo() {
     snapshotStore.redo();
+}
+
+function compose() {
+    composeStore.compose();
+    snapshotStore.recordSnapshot();
+}
+
+function decompose() {
+    composeStore.decompose();
+    snapshotStore.recordSnapshot();
 }
 
 function handleFileChange() {
@@ -63,8 +75,10 @@ function unlock() {
         <a-button @click="preview(false)">预览</a-button>
         <a-button @click="save">保存</a-button>
         <a-button @click="clearCanvas">清空画布</a-button>
-        <a-button>组合</a-button>
-        <a-button>拆分</a-button>
+        <a-button :disabled="!composeStore.areaData.components.length" @click="compose">组合</a-button>
+        <a-button
+            :disabled="!coreStore.curComponent || coreStore.curComponent.isLock || coreStore.curComponent.component !== 'Group'"
+            @click="decompose">拆分</a-button>
         <a-button :disabled="!coreStore.curComponent || coreStore.curComponent.isLock" @click="lock">锁定</a-button>
         <a-button :disabled="!coreStore.curComponent || !coreStore.curComponent.isLock" @click="unlock">解锁</a-button>
     </div>

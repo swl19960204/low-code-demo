@@ -58,6 +58,6 @@ export const useCoreStore = defineStore('core', {
     },
     setShapeSingleStyle({ key, value }) {
       this.curComponent.style[key] = value
-    }
+    },
   }
 })

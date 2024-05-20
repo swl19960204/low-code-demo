@@ -1,4 +1,4 @@
-import { sin, cos, } from './translate'
+import { sin, cos, toPercent } from './translate'
 // import { cloneDeep } from 'lodash-es'
 
 export function getShapeStyle(style) {
@@ -84,4 +84,25 @@ export function getComponentRotatedStyle(style) {
     }
 
     return style
+}
+
+export function createGroupStyle(groupComp) {
+    const parentStyle = groupComp.style
+    groupComp.propValue.forEach(component => {
+        // component.groupStyle 的 top left 是相对于 group 组件的位置
+        // 如果已存在 component.groupStyle，说明已经计算过一次了。不需要再次计算
+        if (!Object.keys(component.groupStyle).length) {
+            const style = { ...component.style }
+            if (component.component.startsWith('SVG')) {
+                // component.groupStyle = getSVGStyle(style)
+            } else {
+                component.groupStyle = getStyle(style)
+            }
+
+            component.groupStyle.left = toPercent((style.left - parentStyle.left) / parentStyle.width)
+            component.groupStyle.top = toPercent((style.top - parentStyle.top) / parentStyle.height)
+            component.groupStyle.width = toPercent(style.width / parentStyle.width)
+            component.groupStyle.height = toPercent(style.height / parentStyle.height)
+        }
+    })
 }

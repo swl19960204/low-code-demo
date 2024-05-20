@@ -10,6 +10,7 @@ import Area from './Area.vue'
 import Shape from './Shape.vue'
 import { getCanvasStyle, getStyle, getShapeStyle, getComponentRotatedStyle } from '../../utils/style'
 import { changeStyleWithScale } from '../../utils/translate'
+import eventBus from '@/utils/eventBus'
 defineProps({
     isEdit: {
         type: Boolean,
@@ -171,6 +172,10 @@ function getComponentStyle(style) {
 
 onMounted(() => {
     composeStore.setEditor();
+
+    eventBus.on('hideArea', () => {
+        hideArea()
+    })
 })
 
 </script>
