@@ -1,0 +1,1 @@
+import{_ as t}from"./CommonAttr-DsgEajnv.js";import{o as e,c as o,b as r}from"./index-DL-Lm1Q6.js";import"./core-B0ihKDkf.js";const s={class:"attr-list"},p={__name:"Attr",setup(a){return(c,_)=>(e(),o("div",s,[r(t)]))}};export{p as default};
