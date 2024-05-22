@@ -1,0 +1,1 @@
+import{_ as t}from"./CommonAttr-CIE-tX7a.js";import{o as e,c as o,f as r}from"./index-CeAheCq1.js";import"./core-B1Pbevw3.js";const s={class:"attr-list"},p={__name:"Attr",setup(a){return(c,_)=>(e(),o("div",s,[r(t)]))}};export{p as default};
