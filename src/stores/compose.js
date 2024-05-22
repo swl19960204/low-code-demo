@@ -34,6 +34,7 @@ export const useComposeStore = defineStore('compose', {
         compose() {
             const core = useCoreStore()
             let components = [];
+
             this.areaData.components.forEach(component => {
                 if (component.component != 'Group') {
                     components.push(component)
@@ -65,7 +66,6 @@ export const useComposeStore = defineStore('compose', {
             createGroupStyle(groupComp)
 
             core.addComp(groupComp);
-
 
             this.batchDeleteComponent(this.areaData.components);
 

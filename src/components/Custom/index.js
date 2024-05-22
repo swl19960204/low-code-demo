@@ -5,7 +5,7 @@ const components = [
     // 'Picture',
     // 'VText',
     'VButton',
-    // 'Group',
+    'Group',
     // 'RectShape',
     // 'LineShape',
     'VTable',
