@@ -76,7 +76,7 @@ const deselectCurComponent = () => {
       </section>
 
       <section :class="rightActive ? 'right active' : 'right inactive'">
-        <a-tabs v-if="coreStore.curComponent" v-model:activeKey="activeName">
+        <a-tabs v-if="coreStore.curComponent" v-model:activeKey="activeName" style="height: 100%;">
           <a-tab-pane tab="属性" key="attr">
             <component :is="coreStore.curComponent.component + 'Attr'" />
           </a-tab-pane>
@@ -168,6 +168,22 @@ const deselectCurComponent = () => {
       top: 0;
       transition: all .3s;
       background-color: var(--main-bg-color);
+
+      ::v-deep .ant-tabs-nav-list {
+        margin-left: 16px;
+      }
+
+      ::v-deep .ant-tabs-nav {
+        margin-bottom: 0
+      }
+
+      ::v-deep .ant-tabs-content-holder {
+        height: calc(100% - 46px)
+      }
+
+      ::v-deep .ant-tabs-content {
+        height: 100%
+      }
     }
   }
 }

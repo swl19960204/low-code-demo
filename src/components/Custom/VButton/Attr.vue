@@ -10,4 +10,5 @@ import CommonAttr from '../../Common/CommonAttr.vue'
 </template>
 
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+</style>

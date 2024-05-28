@@ -23,11 +23,10 @@ function isIncludesColor(str) {
 </script>
 <template>
     <div class="s-common-attr">
-        <a-collapse v-model:activeKey="activeKey" accordion>
+        <a-collapse v-model:activeKey="activeKey" accordion expandIconPosition="end" :bordered="false">
             <a-collapse-panel key="style" header="通用样式">
                 <a-form layout="vertical">
                     <a-form-item v-for="({ key, label }, index) in styleKeys" :key="index" :label="label">
-
                         <a-select v-if="selectKeys.includes(key)" v-model:value="coreStore.curComponent.style[key]">
                             <a-select-option v-for="item in optionMaps[key]" :key="item.value" :value="item.value">
                                 {{ item.label }}
@@ -38,15 +37,11 @@ function isIncludesColor(str) {
                     </a-form-item>
                 </a-form>
             </a-collapse-panel>
-            <!-- <a-collapse-panel key="2" header="This is panel header 2">
-                <p>{{ text }}</p>
-            </a-collapse-panel>
-            <a-collapse-panel key="3" header="This is panel header 3">
-                <p>{{ text }}</p>
-            </a-collapse-panel> -->
         </a-collapse>
     </div>
 </template>
 
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.s-common-attr {}
+</style>

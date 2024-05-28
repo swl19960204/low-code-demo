@@ -1,5 +1,6 @@
 import './styles/reset.css'
 import './assets/iconfont/iconfont.css'
+import '@/styles/global.less'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
