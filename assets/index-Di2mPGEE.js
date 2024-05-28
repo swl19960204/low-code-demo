@@ -1,1 +1,0 @@
-import{_ as e}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{o,c as s,t as a}from"./index-CeAheCq1.js";const n={class:"v-button"},r={__name:"index",props:{prototies:{type:String,default:""},element:{type:Object,default:()=>{}}},setup(t){return(c,p)=>(o(),s("button",n,a(t.prototies),1))}},l=e(r,[["__scopeId","data-v-b73b0aa4"]]);export{l as default};

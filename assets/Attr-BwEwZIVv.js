@@ -1,1 +1,0 @@
-import{_ as t}from"./CommonAttr-CIE-tX7a.js";import{o as e,c as a,f as s,a as o}from"./index-CeAheCq1.js";import"./core-B1Pbevw3.js";const r={class:"attr-list v-talbe-attr"},c=o("p",null,"TODO...",-1),d={__name:"Attr",setup(_){return(n,i)=>(e(),a("div",r,[s(t),c]))}};export{d as default};
