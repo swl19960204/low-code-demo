@@ -1,3 +1,5 @@
+import exampleJPG from '@/assets/example.jpg'
+
 // 公共样式
 export const commonStyle = {
     rotate: 0,
@@ -72,11 +74,11 @@ const list = [
         },
     },
     {
-        component: 'Picture',
+        component: 'VImage',
         label: '图片',
         icon: 'tupian',
         propValue: {
-            // url: require('@/assets/title.jpg'),
+            url: exampleJPG,
             flip: {
                 horizontal: false,
                 vertical: false,
