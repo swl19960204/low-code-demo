@@ -27,7 +27,9 @@ function isIncludesColor(str) {
             <a-collapse-panel key="style" header="通用样式">
                 <a-form layout="vertical">
                     <a-form-item v-for="({ key, label }, index) in styleKeys" :key="index" :label="label">
-                        <a-select v-if="selectKeys.includes(key)" v-model:value="coreStore.curComponent.style[key]">
+                        <input v-if="isIncludesColor(key)" v-model="coreStore.curComponent.style[key]" type="color" />
+                        <a-select v-else-if="selectKeys.includes(key)"
+                            v-model:value="coreStore.curComponent.style[key]">
                             <a-select-option v-for="item in optionMaps[key]" :key="item.value" :value="item.value">
                                 {{ item.label }}
                             </a-select-option>

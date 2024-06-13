@@ -1,7 +1,7 @@
 import { defineAsyncComponent } from 'vue'
 
 const components = [
-    // 'CircleShape',
+    'CircleShape',
     'VImage',
     // 'VText',
     'VButton',
