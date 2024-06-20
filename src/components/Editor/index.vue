@@ -168,6 +168,16 @@ function getComponentStyle(style) {
     return getStyle(style, svgFilterAttrs)
 }
 
+function handleInput(element, value) {
+    let { lineHeight, fontSize, height } = element.style
+    if (lineHeight === '') {
+        lineHeight = 1.5
+    }
+
+    const newHeight = (value.split('<br>').length - 1) * lineHeight * (fontSize || coreStore.canvasStyleData.fontSize)
+    const updateHeight = height > newHeight ? height : newHeight
+    coreStore.setShapeStyle({ height: updateHeight })
+}
 
 
 onMounted(() => {
@@ -196,7 +206,7 @@ onMounted(() => {
 
             <component :is="item.component" :id="`component-${item.id}`" class="component"
                 :style="getComponentStyle(item.style)" :prototies="item.propValue" :element="item"
-                :request="item.request" />
+                :request="item.request" @onInput="handleInput" />
 
         </Shape>
         <!-- 右击菜单 -->

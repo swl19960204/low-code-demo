@@ -18,5 +18,3 @@ const coreStore = useCoreStore();
         </a-form>
     </div>
 </template>
-
-<style lang="less" scoped></style>

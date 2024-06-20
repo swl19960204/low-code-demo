@@ -15,7 +15,8 @@ export const useCoreStore = defineStore('core', {
     componentData: [], // 画布组件数据
     curComponent: null,
     curComponentIndex: -1,
-    clickOutSideComponent: false
+    clickOutSideComponent: false,
+    editMode: 'edit', // 编辑器模式 edit preview
   }),
   actions: {
     addComp(component, index) {

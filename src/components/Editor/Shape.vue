@@ -74,6 +74,10 @@ function selectCurComponent(e) {
 }
 
 function handleMouseDownOnShape(e) {
+    // 将当前点击组件的事件传播出去，目前的消费是 VText 组件
+    nextTick(() => {
+        eventBus.emit('componentClick')
+    })
     e.stopPropagation();
     coreStore.setClickOutSideCompStatus(true);
     coreStore.setCurComponent({ component: props.element, index: props.index })
