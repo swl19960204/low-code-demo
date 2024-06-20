@@ -99,13 +99,13 @@ onBeforeUnmount(() => {
 <template>
     <div class="v-text" v-if="coreStore.editMode === 'edit'" @keydown="handleKeydown" @keyup="handleKeyup">
         <div ref="textEditRef" :contenteditable="canEdit" :class="{ 'can-edit': canEdit }" tabindex="0"
-            :style="{ verticalAlign: props.element.style.verticalAlign, padding: props.element.style.padding + 'px' }"
+            :style="{ verticalAlign: element.style.verticalAlign, padding: element.style.padding + 'px' }"
             @dblclick="setEdit" @paste="handlePaste" @mousedown="handleMousedown" @blur="handleBlur"
-            @input="handleInput" v-html="props.element.propValue"></div>
+            @input="handleInput" v-html="element.propValue"></div>
     </div>
     <div v-else class="v-text preview">
-        <div :style="{ verticalAlign: props.element.style.verticalAlign, padding: props.element.style.padding + 'px' }"
-            v-html="props.element.propValue"></div>
+        <div :style="{ verticalAlign: element.style.verticalAlign, padding: element.style.padding + 'px' }"
+            v-html="element.propValue"></div>
     </div>
 </template>
 
