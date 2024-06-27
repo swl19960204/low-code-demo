@@ -6,8 +6,8 @@ const components = [
     'VText',
     'VButton',
     'Group',
-    // 'RectShape',
-    // 'LineShape',
+    'RectShape',
+    'LineShape',
     'VTable',
     // 'VChart',
 ]

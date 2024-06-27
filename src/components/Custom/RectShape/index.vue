@@ -13,17 +13,16 @@ defineProps({
 </script>
 
 <template>
-    <div class="circle-shape">
+    <div class="rect-shape">
         <v-text :prototies="element.propValue" :element="element" />
     </div>
 </template>
 
 
 <style lang="less" scoped>
-.circle-shape {
+.rect-shape {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
     overflow: auto;
 }
 </style>
