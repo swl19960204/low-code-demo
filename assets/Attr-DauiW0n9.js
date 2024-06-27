@@ -1,0 +1,1 @@
+import{C as t}from"./CommonAttr-DaEzbyka.js";import{o,c as r,a as e}from"./index-AqBzA8KP.js";import"./core-BiR1e3Mx.js";import"./_plugin-vue_export-helper-DlAUqK2U.js";import"./collapseMotion-B1N9PCOB.js";const a={class:"attr-list v-talbe-attr"},d={__name:"Attr",setup(s){return(c,m)=>(o(),r("div",a,[e(t)]))}};export{d as default};
