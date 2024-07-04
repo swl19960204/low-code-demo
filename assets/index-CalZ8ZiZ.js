@@ -1,1 +1,0 @@
-import{_ as e}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{o as c,c as o}from"./index-AqBzA8KP.js";const s={},t={class:"line-shape"};function a(n,r){return c(),o("div",t)}const f=e(s,[["render",a],["__scopeId","data-v-6805afe9"]]);export{f as default};
