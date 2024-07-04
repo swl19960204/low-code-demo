@@ -12,12 +12,14 @@
   },
   "dependencies": {
     "ant-design-vue": "^4.1.2",
+    "echarts": "^5.5.1",
     "lodash-es": "^4.17.21",
     "mathjs": "^12.4.1",
     "mitt": "^3.0.1",
     "nanoid": "^5.0.7",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
+    "vue-echarts": "^6.7.3",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {

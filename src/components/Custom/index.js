@@ -9,7 +9,7 @@ const components = [
     'RectShape',
     'LineShape',
     'VTable',
-    // 'VChart',
+    'VChart',
 ]
 
 export const registerCustomComp = {
